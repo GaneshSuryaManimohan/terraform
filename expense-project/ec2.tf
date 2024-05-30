@@ -23,7 +23,7 @@ resource "aws_security_group" "allow_ssh" {
     }
 }
 
-resource "aws_instance" "db" {
+resource "aws_instance" "expense" {
         count = length(var.instance_names)
         ami = var.AMI
         instance_type = var.instance_names[count.index] == "db" ? "t2.micro" : "t3.micro"
@@ -35,4 +35,16 @@ resource "aws_instance" "db" {
             Module = var.instance_names[count.index]
         }
     )
+}
+
+#route53 
+
+resource "aws_route53_record" "expense" {
+  count = length(var.instance_names)
+  zone_id = var.zone_id
+  name    = var.instance_names[count.index] == "frontend" ? var.domain_name : "${var.instance_names[count.index]}.${var.domain_name}"
+  type    = "A"
+  ttl     = 10
+  records =  var.instance_names[count.index] == "frontend" ? [aws_instance.expense[count.index].public_ip] : [aws_instance.expense[count.index].private_ip]
+  allow_overwrite = true #if R53 records already exists this will overwrite the records
 }

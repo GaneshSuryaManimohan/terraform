@@ -1,3 +1,4 @@
+#EC2 Variables
 variable "instance_names" {
     type = list
     default = ["db", "backend", "frontend"]
@@ -22,6 +23,8 @@ variable "common_tags" {
     }
 }
 
+#Security Group Variables
+
 variable "sg_name" {
     default = "allow_ssh"
 }
@@ -41,4 +44,13 @@ variable "protocol" {
 variable "allowed_cidr" {
     type = list(string)
     default = ["0.0.0.0/0"]
+}
+
+#R53 Variables
+variable "domain_name" {
+    default = "surya-devops.online"
+}
+
+variable "zone_id" {
+    default = "Z03843522HI6ZCMSMEBKL"
 }
