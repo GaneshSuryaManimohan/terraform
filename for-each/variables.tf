@@ -23,9 +23,9 @@ variable "common_tags" {
 
 #R53 Variables
 variable "domain_name" {
-    default = "surya-devops.online"
+    default = "surya-devops.site"
 }
 
 variable "zone_id" {
-    default = "Z03843522HI6ZCMSMEBKL"
+    default = "Z09254361YXRI2M5F61SK"
 }
