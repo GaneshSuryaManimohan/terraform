@@ -1,3 +1,8 @@
+# Command Line Variables
+# .tfvars file
+# Environment Variables
+# variable default value
+
 variable "AMI" {
     type = string
     default = "ami-090252cbe067a9e58"
